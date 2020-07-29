@@ -19,6 +19,6 @@ class Stack:
             return self.array.pop()
         return "$"
 
-    def push(self, value):
+    def push(self, value) -> None:
         self.top += 1
         self.array.append(value)
