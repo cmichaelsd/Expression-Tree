@@ -23,10 +23,10 @@ class InfixToPostfix(Stack):
         return self.__priority
 
     # Will have to change for numerals
-    def is_operand(self, c) -> bool:
+    def __is_operand(self, c) -> bool:
         return c.isalpha()
 
-    def not_greater(self, c) -> bool:
+    def __not_greater(self, c) -> bool:
         try:
             return self.priority[c] <= self.priority[self.peek()]
         except KeyError:
@@ -38,7 +38,7 @@ class InfixToPostfix(Stack):
         for c in exp:
 
             # if current is operand
-            if self.is_operand(c): 
+            if self.__is_operand(c): 
                 # push to output
                 self.output.push(c)
               
@@ -59,7 +59,7 @@ class InfixToPostfix(Stack):
             
             else:
                 # while stack is not empty and current is not greater than top of stack
-                while not self.is_empty() and self.not_greater(c): 
+                while not self.is_empty() and self.__not_greater(c): 
                     # pop off top of stack until current is greater than top of stack
                     self.output.push(self.pop())
                 # push current to top of stack
