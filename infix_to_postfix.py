@@ -4,7 +4,6 @@ from typing import Any
 class InfixToPostfix(Stack):
     def __init__(self) -> None:
         Stack.__init__(self)
-        self.postfix = ""
         self.__output = Stack()
         self.__priority = {
             "+": 1, 
@@ -22,9 +21,8 @@ class InfixToPostfix(Stack):
     def priority(self) -> Any:
         return self.__priority
 
-    # Will have to change for numerals
     def __is_operand(self, c) -> bool:
-        return c.isalpha()
+        return c.isdigit()
 
     def __not_greater(self, c) -> bool:
         try:
@@ -32,10 +30,10 @@ class InfixToPostfix(Stack):
         except KeyError:
             return False
 
-    def conversion(self, exp) -> str: 
-          
+    def conversion(self, expression) -> str: 
+        
         # iterate
-        for c in exp:
+        for c in expression:
 
             # if current is operand
             if self.__is_operand(c): 
@@ -70,4 +68,4 @@ class InfixToPostfix(Stack):
             # pop off top of stack and push to output
             self.output.push(self.pop()) 
   
-        self.postfix = "".join(self.output.array)
+        return "".join(self.output.array)

@@ -12,7 +12,7 @@ class ExpressionTree(InfixToPostfix):
     def __init__(self, expression) -> None:
         InfixToPostfix.__init__(self)
         self.__tree = Stack()
-        self.conversion(expression)
+        self.postfix = self.conversion(expression)
         self.__construct()
         self.in_order_traversal(self.tree.pop())
 
@@ -42,6 +42,3 @@ class ExpressionTree(InfixToPostfix):
                 t.left = self.tree.pop()
 
                 self.tree.push(t)
-
-expressionTree = ExpressionTree("a+b*(c^d-e)^(f+g*h)-i")
-print(expressionTree.postfix)

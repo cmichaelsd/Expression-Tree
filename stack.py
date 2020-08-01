@@ -3,11 +3,7 @@ from typing import Any
 class Stack:
     def __init__(self) -> None:
         self.__top = -1
-        self.__array = []
-
-    @property
-    def array(self) -> Any:
-        return self.__array
+        self.array = []
 
     @property
     def top(self) -> int:
@@ -35,6 +31,6 @@ class Stack:
             return self.array.pop()
         return "$"
 
-    def push(self, value) -> None:
-        self.top += 1
-        self.array.append(value)
+    def push(self, *argv) -> None:
+        self.top += len(argv)
+        self.array.extend(argv)
