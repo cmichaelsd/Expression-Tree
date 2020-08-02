@@ -2,8 +2,14 @@ from stack import Stack
 from typing import Any
 
 class InfixToPostfix(Stack):
-    def __init__(self) -> None:
+    def __new__(cls, expression) -> str:
+        instance = super(InfixToPostfix, cls).__new__(cls)
+        instance.__init__(expression)
+        return instance.__conversion()
+
+    def __init__(self, expression) -> None:
         Stack.__init__(self)
+        self.expression = expression
         self.__output = Stack()
         self.__priority = {
             "+": 1, 
@@ -30,10 +36,10 @@ class InfixToPostfix(Stack):
         except KeyError:
             return False
 
-    def conversion(self, expression) -> str: 
+    def __conversion(self) -> str: 
         
         # iterate
-        for c in expression:
+        for c in self.expression:
 
             # if current is operand
             if self.__is_operand(c): 

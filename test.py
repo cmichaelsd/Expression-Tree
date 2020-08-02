@@ -15,7 +15,7 @@ class Expect:
             print(f"Failed: {message}")
     
     def to_equal(self, expect):
-         condition = expect == self.value
+         condition = self.value == expect
          message = f"expected {expect}, result {self.value}."
          self.__message(condition, message)
             

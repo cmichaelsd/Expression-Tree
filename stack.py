@@ -1,9 +1,9 @@
 from typing import Any
 
 class Stack:
-    def __init__(self) -> None:
+    def __init__(self, *args) -> None:
         self.__top = -1
-        self.array = []
+        self.array = [*args]
 
     @property
     def top(self) -> int:
@@ -16,6 +16,9 @@ class Stack:
     @top.deleter
     def top(self, value) -> None:
         self.__top = value
+
+    def size(self) -> int:
+        return self.top
     
     def is_empty(self) -> bool:
         if self.top == -1:
